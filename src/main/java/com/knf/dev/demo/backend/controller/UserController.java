@@ -20,7 +20,7 @@ import com.knf.dev.demo.backend.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/v1/users")
-//@CrossOrigin(origins = "http://localhost:8080")
+
 public class UserController {
 
 
@@ -34,7 +34,7 @@ public class UserController {
         this.departmentRepository = departmentRepository;
     }
 
-    // Create user
+    // Create user - have to specify  the name of user's department
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
 
@@ -56,7 +56,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
-    // Update user
+    // Update user - have to specify  the name of user's department
     @PutMapping("/{userId}")
     public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody UserDto userDto) {
         User existingUser = userRepository.findById(userId)
@@ -108,7 +108,7 @@ public class UserController {
     }
 
 
-    // Delete user
+    // Delete user by  id
     @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) {
 

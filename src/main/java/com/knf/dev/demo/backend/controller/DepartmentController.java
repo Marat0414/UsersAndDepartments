@@ -69,12 +69,10 @@ public class DepartmentController {
     }
 
 
-
     @PostMapping
     public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
         try {
             Department newDepartment = new Department(department.getName());
-
 
 
             departmentRepository.save(newDepartment);
@@ -83,7 +81,6 @@ public class DepartmentController {
             throw new InternalServerError(e.getMessage());
         }
     }
-
 
 
     @PutMapping("/{id}")
@@ -113,7 +110,7 @@ public class DepartmentController {
 
     // Method to delete users by department ID
     @DeleteMapping("/{departmentId}/users")
-    public ResponseEntity<Void> deleteUsersByDepartment(@PathVariable Long departmentId) {
+    public ResponseEntity<Void> deleteUsersByDepartmentId(@PathVariable Long departmentId) {
         Department department = departmentRepository.findById(departmentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with ID: " + departmentId));
 
@@ -123,17 +120,25 @@ public class DepartmentController {
         return ResponseEntity.noContent().build();
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Department> deleteDepartment(@PathVariable("id") Long id) {
-//
-//        Optional<Department> departmentData = departmentRepository.findById(id);
-//        if (departmentData.isPresent()) {
-//            departmentRepository.deleteById(id);
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } else {
-//            throw new ResourceNotFoundException("Invalid Department Id");
-//        }
-//    }
-//
+    @DeleteMapping("/name/{departmentName}/users")
+    public ResponseEntity<Void> deleteUsersByDepartmentName(@PathVariable String departmentName) {
+        try {
+            List<User> usersToDelete = userRepository.findByDepartmentName(departmentName);
+            if (usersToDelete.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
 
+            for (User user : usersToDelete) {
+                user.setDepartment(null); // Disassociate the user from the department
+                userRepository.delete(user);
+            }
+           Department department = departmentRepository.findByName(departmentName)
+                   .orElseThrow(()-> new ResourceNotFoundException("Department not found with name: " + departmentName));
+            departmentRepository.delete(department);
+            return ResponseEntity.ok().build();
+        } catch (ResourceNotFoundException ex) {
+            // if department does not exist
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

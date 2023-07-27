@@ -1,8 +1,7 @@
 package com.knf.dev.demo.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 
 
 @Entity
@@ -80,6 +79,14 @@ public class User {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     public User(String firstName, String lastName, String email, int salary, Department department) {
