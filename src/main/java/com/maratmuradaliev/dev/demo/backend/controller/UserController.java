@@ -1,22 +1,22 @@
-package com.knf.dev.demo.backend.controller;
+package com.maratmuradaliev.dev.demo.backend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.knf.dev.demo.backend.controller.dto.UserDto;
-import com.knf.dev.demo.backend.entity.Department;
-import com.knf.dev.demo.backend.exception.ResourceNotFoundException;
-import com.knf.dev.demo.backend.repository.DepartmentRepository;
+import com.maratmuradaliev.dev.demo.backend.controller.dto.UserDto;
+import com.maratmuradaliev.dev.demo.backend.entity.Department;
+import com.maratmuradaliev.dev.demo.backend.exception.ResourceNotFoundException;
+import com.maratmuradaliev.dev.demo.backend.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.knf.dev.demo.backend.entity.User;
-import com.knf.dev.demo.backend.exception.InternalServerError;
+import com.maratmuradaliev.dev.demo.backend.entity.User;
+import com.maratmuradaliev.dev.demo.backend.exception.InternalServerError;
 
-import com.knf.dev.demo.backend.repository.UserRepository;
+import com.maratmuradaliev.dev.demo.backend.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/v1/users")

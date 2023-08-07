@@ -1,4 +1,4 @@
-package com.knf.dev.demo.backend;
+package com.maratmuradaliev.dev.demo.backend;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

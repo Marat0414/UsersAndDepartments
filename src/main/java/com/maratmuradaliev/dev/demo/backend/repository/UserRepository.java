@@ -1,13 +1,10 @@
-package com.knf.dev.demo.backend.repository;
+package com.maratmuradaliev.dev.demo.backend.repository;
 
-import com.knf.dev.demo.backend.entity.Department;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
-import com.knf.dev.demo.backend.entity.User;
+import com.maratmuradaliev.dev.demo.backend.entity.User;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;

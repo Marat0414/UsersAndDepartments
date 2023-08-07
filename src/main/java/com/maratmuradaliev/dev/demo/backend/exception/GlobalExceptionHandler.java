@@ -1,4 +1,4 @@
-package com.knf.dev.demo.backend.exception;
+package com.maratmuradaliev.dev.demo.backend.exception;
 import java.util.Date;
 
 import org.springframework.http.HttpStatus;

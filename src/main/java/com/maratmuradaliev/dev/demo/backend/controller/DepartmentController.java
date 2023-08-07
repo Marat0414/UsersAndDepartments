@@ -1,13 +1,13 @@
-package com.knf.dev.demo.backend.controller;
+package com.maratmuradaliev.dev.demo.backend.controller;
 
-import com.knf.dev.demo.backend.controller.dto.DepartmentDto;
-import com.knf.dev.demo.backend.entity.Department;
-import com.knf.dev.demo.backend.entity.User;
-import com.knf.dev.demo.backend.exception.InternalServerError;
-import com.knf.dev.demo.backend.exception.ResourceNotFoundException;
+import com.maratmuradaliev.dev.demo.backend.controller.dto.DepartmentDto;
+import com.maratmuradaliev.dev.demo.backend.entity.Department;
+import com.maratmuradaliev.dev.demo.backend.entity.User;
+import com.maratmuradaliev.dev.demo.backend.exception.InternalServerError;
+import com.maratmuradaliev.dev.demo.backend.exception.ResourceNotFoundException;
 
-import com.knf.dev.demo.backend.repository.DepartmentRepository;
-import com.knf.dev.demo.backend.repository.UserRepository;
+import com.maratmuradaliev.dev.demo.backend.repository.DepartmentRepository;
+import com.maratmuradaliev.dev.demo.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -104,7 +104,7 @@ public class DepartmentController {
         Department department = departmentRepository.findById(departmentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with ID: " + departmentId));
 
-        List<User> users = userRepository.findByDepartmentId(departmentId);
+        List<User> users = userRepository.findByDepartmentId(department.getId());
         return ResponseEntity.ok(users);
     }
 
@@ -120,6 +120,7 @@ public class DepartmentController {
         return ResponseEntity.noContent().build();
     }
 
+    //Method to delete users by department's name
     @DeleteMapping("/name/{departmentName}/users")
     public ResponseEntity<Void> deleteUsersByDepartmentName(@PathVariable String departmentName) {
         try {
@@ -132,8 +133,8 @@ public class DepartmentController {
                 user.setDepartment(null); // Disassociate the user from the department
                 userRepository.delete(user);
             }
-           Department department = departmentRepository.findByName(departmentName)
-                   .orElseThrow(()-> new ResourceNotFoundException("Department not found with name: " + departmentName));
+            Department department = departmentRepository.findByName(departmentName)
+                    .orElseThrow(() -> new ResourceNotFoundException("Department not found with name: " + departmentName));
             departmentRepository.delete(department);
             return ResponseEntity.ok().build();
         } catch (ResourceNotFoundException ex) {

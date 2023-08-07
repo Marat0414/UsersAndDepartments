@@ -1,4 +1,4 @@
-package com.knf.dev.demo.backend;
+package com.maratmuradaliev.dev.demo.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

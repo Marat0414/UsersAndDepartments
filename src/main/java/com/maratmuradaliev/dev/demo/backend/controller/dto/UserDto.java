@@ -1,4 +1,4 @@
-package com.knf.dev.demo.backend.controller.dto;
+package com.maratmuradaliev.dev.demo.backend.controller.dto;
 
 public class UserDto {
     private String firstName;

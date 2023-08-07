@@ -1,4 +1,4 @@
-package com.knf.dev.demo.backend.entity;
+package com.maratmuradaliev.dev.demo.backend.entity;
 
 
 import jakarta.persistence.*;
@@ -25,8 +25,8 @@ public class User {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
     private Department department;
-    @Transient
-    private String departmentName;
+//    @Transient
+//    private String departmentName;
 
     public User() {
         super();
@@ -81,13 +81,13 @@ public class User {
         this.salary = salary;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
+//    public String getDepartmentName() {
+//        return departmentName;
+//    }
+//
+//    public void setDepartmentName(String departmentName) {
+//        this.departmentName = departmentName;
+//    }
 
     public User(String firstName, String lastName, String email, int salary, Department department) {
         super();

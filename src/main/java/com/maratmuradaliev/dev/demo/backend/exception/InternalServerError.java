@@ -1,4 +1,4 @@
-package com.knf.dev.demo.backend.exception;
+package com.maratmuradaliev.dev.demo.backend.exception;
 public class InternalServerError extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
